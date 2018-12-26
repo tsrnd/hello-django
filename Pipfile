@@ -1,12 +1,19 @@
 [[source]]
 name = "pypi"
 url = "https://pypi.org/simple"
-verify_ssl = true
+verify_ssl = false
 
 [dev-packages]
+pylint = "*"
 
 [packages]
 django = "*"
+psycopg2 = "*"
+redis = "*"
+
+[scripts]
+server = "python manage.py runserver"
+startproject = "django-admin startproject"
 
 [requires]
 python_version = "3.7"
