@@ -2,36 +2,44 @@
 
 ## Development
 
-Make sure `pipenv` sticks the virtualenv in `project/.venv` by setting the `PIPENV_VENV_IN_PROJECT` environment variable.
+Make sure `pipenv` sticks the virtualenv in `./.venv` by setting the
+ `PIPENV_VENV_IN_PROJECT` environment variable.
 
 ```bash
 # ~/.bashrc, ~/.bash_profile, ~/.zshrc
 PIPENV_VENV_IN_PROJECT=1
 ```
 
-Sync all dependencies
+Install all dependencies (includes dev)
 
 ```bash
-$ pipenv sync
-$ pipenv sync --dev
+$ pipenv install --dev
 ```
 
-Run server with local environment
+Run app with local environment
 
 ```
-$ pipenv run local
+$ pipenv run python manage.py runserver 0.0.0.0:8000
 ```
 
-Run server with docker environment
+### Freeze Requirements
 
 ```
-$ pipenv run docker
+$ pipenv lock --requirements > requirements.txt
+```
+
+### Docker Supports
+
+Run app with docker environment
+
+```
+$ docker-compose up
 ```
 
 ## Deployment
 
-Sync production dependencies
+Install production dependencies
 
 ```bash
-$ pipenv sync
+$ pipenv install
 ```

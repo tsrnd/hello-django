@@ -1,0 +1,32 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .dockerfile
+    volumes:
+      - .:/var/www
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+    links:
+      - data:data
+    environment:
+      DATABASE_ENGINE: 'django.db.backends.postgresql'
+      DATABASE_URL: 'postgres://hello:django@data:5432/default'
+      DATABASE_HOST: 'data'
+      DATABASE_PORT: '5432'
+      DATABASE_NAME: 'default'
+      DATABASE_USER: 'hello'
+      DATABASE_PASSWORD: 'django'
+
+  data:
+    image: postgres:11.1-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: 'default'
+      POSTGRES_USER: 'hello'
+      POSTGRES_PASSWORD: 'django'
+    restart: always
