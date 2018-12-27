@@ -3,3 +3,4 @@ djangorestframework
 pylint
 psycopg2-binary
 django-filter
+pylint-django

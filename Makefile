@@ -3,9 +3,11 @@ BASE_TAG=$(shell git rev-parse --short HEAD)
 DB_TAG=postgres:9.6.5-alpine
 REDIS_TAG=redis:3.2.10-alpine
 
+USER_WORK_DIR=$(shell pwd)
+
 WORK_DIR=/hello-django
 DB_PORT=5432
-REDIS_PORT=3000
+REDIS_PORT=6379
 APP_PORT=8000
 
 DJANGO_IMAGE_NAME=hello-django/team2
@@ -34,11 +36,11 @@ dep-images:
 dep-cont:
 	@echo ":::Running dependents container"
 	docker run -d -p 5433:5432 -v /var/lib/postgresql/data -v $(shell pwd)/database.sql:/docker-entrypoint-initdb.d/database.sql --env POSTGRES_USER=postgres --env POSTGRES_DBNAME=team2 --env POSTGRES_PASSWORD=mypass --env POSTGRES_PORT=5432 --name $(DB_CONT_NAME) $(DB_IMAGE_NAME)
-	docker run -d -p 3000:3000 --name $(REDIS_CONT_NAME) $(REDIS_IMAGE_NAME)
+	docker run -d --name $(REDIS_CONT_NAME) $(REDIS_IMAGE_NAME)
 
 app-cont:
 	@echo ":::Running django app container"
-	docker run -d -p 8000:8000 --link $(DB_CONT_NAME):db --link $(REDIS_CONT_NAME):redis --name $(DJANGO_CONT_NAME) $(DJANGO_IMAGE_NAME):$(BASE_TAG)
+	docker run -d -p 8000:8000 -v $(USER_WORK_DIR):$(WORK_DIR) --link $(DB_CONT_NAME):db --link $(REDIS_CONT_NAME):redis --name $(DJANGO_CONT_NAME) $(DJANGO_IMAGE_NAME):$(BASE_TAG)
 
 #Remove all dependent containers
 remove-dep-cont:

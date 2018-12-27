@@ -13,10 +13,13 @@ ADD ./ ${WORK_DIR}
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+# update Django to avoid Performing system check...
+# https://stackoverflow.com/questions/35572662/django-runserver-stuck-on-performing-system-checks
+RUN pip install -U Django
 
 EXPOSE ${PORT}
 
-CMD python team2/manage.py migrate && cd team2 && python -c "import os; import django; \
+CMD echo test && python team2/manage.py makemigrations && python team2/manage.py migrate && cd team2 && python -c "import os; import django; \
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'team2.settings'); \
     django.setup(); \
     from django.contrib.auth.management.commands.createsuperuser import get_user_model; \

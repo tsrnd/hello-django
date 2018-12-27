@@ -1,0 +1,3 @@
+class SomethingService:
+    pass
+    
