@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:10.1-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5435:5432
+  web:
+    build: .
+    restart: always
+    command: python /code/manage.py runserver 127.0.0.1:8000
+    volumes:
+      - .:/code
+    ports:
+      - 8080:8000
+    depends_on:
+      - migration
+      - db
+  migration:
+    build: .
+    command: python /code/manage.py migrate
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+volumes:
+  postgres_data:
