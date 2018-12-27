@@ -7,6 +7,12 @@ else
 	APP_OPEN_PORT=
 endif
 
+ifdef workspace
+	USER_WORK_DIR=$(workspace)
+else
+	USER_WORK_DIR=$(shell pwd)
+endif
+
 DB_TAG=postgres:9.6.5-alpine
 REDIS_TAG=redis:3.2.10-alpine
 
@@ -45,7 +51,7 @@ dep-cont:
 
 app-cont:
 	@echo ":::Running app container"
-	docker run -dit --env-file=app.env $(APP_OPEN_PORT) --link $(DB_CONT_NAME):db --link $(REDIS_CONT_NAME):redis --name $(APP_CONT_NAME) $(APP_IMAGE_NAME)
+	docker run -dit --env-file=app.env -v $(USER_WORK_DIR):$(WORK_DIR) $(APP_OPEN_PORT) --link $(DB_CONT_NAME):db --link $(REDIS_CONT_NAME):redis --name $(APP_CONT_NAME) $(APP_IMAGE_NAME)
 
 #Remove all dependent containers
 remove-dep-cont:
