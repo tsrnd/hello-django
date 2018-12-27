@@ -10,9 +10,11 @@ pylint = "*"
 django = "*"
 psycopg2 = "*"
 redis = "*"
+pipfile = "*"
 
 [scripts]
-server = "python manage.py runserver"
+server = "python team1/manage.py runserver  0.0.0.0:8000"
+migrate = "python team1/manage.py migrate"
 startproject = "django-admin startproject"
 
 [requires]
