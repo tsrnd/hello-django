@@ -16,30 +16,24 @@ Install all dependencies (includes dev)
 $ pipenv install --dev
 ```
 
-Run app with local environment
-
-```
-$ pipenv run python manage.py runserver 0.0.0.0:8000
-```
-
-### Freeze Requirements
-
-```
-$ pipenv lock --requirements > requirements.txt
-```
-
-### Docker Supports
-
-Run app with docker environment
-
-```
-$ docker-compose up
-```
-
 ## Deployment
 
-Install production dependencies
+### Local environment with Docker
 
-```bash
-$ pipenv install
+Start Postgres database service
+
 ```
+$ docker-compose up -d data
+```
+
+Start Hello-Django application service
+
+```
+$ docker-compose up --build app
+```
+
+### Testing (Staging) environment with Docker
+
+### User Acceptance Testing (UAT) environment with Docker
+
+### Production (PROD) environment with Docker
