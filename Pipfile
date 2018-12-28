@@ -12,6 +12,7 @@ django = "*"
 psycopg2 = "*"
 redis = "*"
 pipfile = "*"
+psycopg2-binary = "*"
 
 [scripts]
 server = "python team1/manage.py runserver  0.0.0.0:8000"

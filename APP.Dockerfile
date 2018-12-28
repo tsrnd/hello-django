@@ -16,4 +16,4 @@ RUN pip install --upgrade pip && \
 
 EXPOSE ${PORT}
 
-CMD pipenv run python team1/manage.py migrate && echo "from django.contrib.auth.models import User; \nif User.objects.filter(username='$DJANGO_NAME').count() == 0: User.objects.create_superuser('$DJANGO_NAME', '$DJANGO_EMAIL', '$DJANGO_PASSWORD')" | pipenv run python team1/manage.py shell && CMD pipenv run python team1/manage.py migrate && pipenv run python team1/manage.py runserver  0.0.0.0:8000 && pipenv run python team1/manage.py runserver  0.0.0.0:8000
+CMD pipenv run python team1/manage.py makemigrations && pipenv run python team1/manage.py migrate && echo "from django.contrib.auth.models import User; \nif User.objects.filter(username='$DJANGO_NAME').count() == 0: User.objects.create_superuser('$DJANGO_NAME', '$DJANGO_EMAIL', '$DJANGO_PASSWORD')" | pipenv run python team1/manage.py shell && pipenv run python team1/manage.py runserver  0.0.0.0:8000
