@@ -2,17 +2,17 @@
 
 from django.urls import re_path
 from api.providers.product_factories import ProductUsecaseFactory
-from api.products.handlers import ProductHandler
+from api.products.handlers import ProductHandler, ProductsHandler
 
 urlpatterns = [
     re_path(
         r'^products/$',
-        ProductHandler.as_view(view_factory=ProductUsecaseFactory),
+        ProductsHandler.as_view(view_factory=ProductUsecaseFactory),
         name='get-all-products',
     ),
-    # re_path(
-    #     r'^products/a$',
-    #     ProductHandler.as_view(view_factory=ProductUsecaseFactory),
-    #     name='get-product',
-    # ),
+    re_path(
+        r'^products/(?P<id>\d+)$',
+        ProductHandler.as_view(view_factory=ProductUsecaseFactory),
+        name='get-product',
+    ),
 ]

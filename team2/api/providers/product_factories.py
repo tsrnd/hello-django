@@ -9,7 +9,8 @@ class ProductRepoFactory:
     """This class does blah blah"""
     @staticmethod
     def get():
-        return ProductRepository(cache)
+        from django_redis import get_redis_connection
+        return ProductRepository(get_redis_connection("default"))
 
 class ProductUsecaseFactory:
     """This class does blah blah"""

@@ -4,6 +4,7 @@ class ProductSerializer:
         return {
             'id': product.id,
             'name': product.name,
+            "image_url": product.im_url,
         }
     
     @staticmethod
