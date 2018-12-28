@@ -1,5 +1,7 @@
 dist: xenial
 language: python
+env:
+  - WORKDIR=/home/travis/build/tsrnd/hello-django
 matrix:
   fast_finish: true
 python:
@@ -7,5 +9,5 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - find . -iname "*.py" | xargs pylint --load-plugins pylint_django -E
-  - timeout 100s pipenv run pytest
+  - find . -iname "*.py" | xargs pylint --load-plugins pylint_django
+  # - timeout 100s pipenv run pytest
