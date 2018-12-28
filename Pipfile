@@ -12,7 +12,6 @@ autopep8 = "~=1.4.0"
 [packages]
 django = "~=2.1.4"
 dj-database-url = "~=0.5.0"
-psycopg2 = "~=2.7.6.1"
 psycopg2-binary = "~=2.7.6.1"
 
 [requires]

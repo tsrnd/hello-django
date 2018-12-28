@@ -7,11 +7,16 @@ ENV \
   INSIDE_DOCKER=1 \
   PIPENV_VENV_IN_PROJECT=1
 
+# Install psql & redis cli
+RUN apk add --no-cache \
+    postgresql-client \
+    redis
+
 # Copy your application code to the container (make sure you create a
 # .dockerignore file if any large files or directories should be excluded)
 RUN mkdir -p /code
 WORKDIR /code
-ADD . ./
+ADD Pip* ./
 
 # Install build deps, then run `pip install`, then remove unneeded build deps
 # all in a single step. Correct the path to your production requirements file,
@@ -38,9 +43,9 @@ RUN set -ex \
     && apk add --virtual .python-rundeps $run_deps \
     && apk del .build-deps
 
-RUN apk add --no-cache \
-    postgresql-client \
-    redis
+ADD . ./
+
+ENV DJANGO_SETTINGS_MODULE=app.settings.dev
 
 RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT [ "/code/docker-entrypoint.sh" ]
