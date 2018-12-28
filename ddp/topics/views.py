@@ -19,7 +19,7 @@ class TopicDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TopicSerializer
 
     def get_queryset(self):
-        return Topic.objects.all().filter(id=self.request.pk)
+        return Topic.objects.all().filter(id=self.request.id)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
