@@ -51,5 +51,5 @@ And start debugging from Visual Code menu.
 Run all test cases.
 
 ```
-# pipenv run pytest
+$ make test
 ```
