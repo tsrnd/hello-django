@@ -1,5 +1,7 @@
 # Hello Django
 
+[![Build Status](https://travis-ci.com/tsrnd/hello-django.svg?branch=master)](https://travis-ci.com/tsrnd/hello-django)
+
 ## Development
 
 Make sure `pipenv` sticks the virtualenv in `./.venv` by setting the
