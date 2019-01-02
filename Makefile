@@ -6,8 +6,7 @@ run:
 run-docker:
 	@echo '[Docker] start data service'
 	docker-compose up -d data
-	@echo '[Docker] clean up exited containers'
-	docker ps -aq -f status=exited | xargs docker rm
+	$(MAKE) clean
 	@echo '[Docker] rebuild & start app service'
 	pipenv lock --requirements > requirements.txt
 	docker-compose up --build app
