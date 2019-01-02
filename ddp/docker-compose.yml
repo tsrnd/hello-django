@@ -9,8 +9,11 @@ services:
       - 5435:5432
   web:
     build: .
+      #context: .
+      #dockerfile: GoBuild.Dockerfile
     restart: always
     command: python /code/manage.py runserver 0.0.0.0:8000
+    tty: true
     volumes:
       - .:/code
     ports:
