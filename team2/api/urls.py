@@ -1,6 +1,6 @@
 """This module use to blab blab"""
 
-from django.urls import re_path
+from django.urls import re_path, path, include
 from api.providers.product_factories import ProductUsecaseFactory
 from api.products.handlers import ProductHandler, ProductsHandler
 
@@ -15,4 +15,6 @@ urlpatterns = [
         ProductHandler.as_view(view_factory=ProductUsecaseFactory),
         name='get-product',
     ),
+    path('test', include('test.urls')),
+    # path('admin/', admin.site.urls),
 ]
