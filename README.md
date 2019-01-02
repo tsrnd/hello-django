@@ -36,7 +36,7 @@ $ make up
 
 View [the result](http://localhost:8000/api/foo/hello) on the browser.
 
-### Debug
+### Debugging
 
 Start PostgreSQL database service with Docker.
 
@@ -44,4 +44,12 @@ Start PostgreSQL database service with Docker.
 $ make up-data
 ```
 
-And start debuging from Visual Code menu.
+And start debugging from Visual Code menu.
+
+### Testing
+
+Run all test cases.
+
+```
+# pipenv run pytest
+```
