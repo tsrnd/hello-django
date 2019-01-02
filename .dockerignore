@@ -9,4 +9,7 @@ tests/
 .python-version
 .travis.yml
 .docker-compose.yml
+Makefile
+Pipfile
+Pipfile.lock
 README.md

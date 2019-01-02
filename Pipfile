@@ -8,11 +8,13 @@ pytest = "~=4.0.0"
 pylint = "~=2.2.0"
 pep8 = "~=1.7.0"
 autopep8 = "~=1.4.0"
+ptvsd = "~=4.2.0"
 
 [packages]
 django = "~=2.1.4"
 dj-database-url = "~=0.5.0"
 psycopg2-binary = "~=2.7.6.1"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"

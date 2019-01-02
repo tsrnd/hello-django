@@ -27,7 +27,7 @@ RUN chmod +x /docker-entrypoint.sh
 RUN mkdir -p /code
 WORKDIR /code
 
-ENV DJANGO_SETTINGS_MODULE=myproject.settings
-ENV DJANGO_MANAGEPY_MIGRATE=on
+ENV DJANGO_MANAGEPY_MIGRATE=1 \
+    DJANGO_MANAGEPY_COLLECTSTATIC=0
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]

@@ -11,10 +11,10 @@ services:
       - 8000
     ports:
       - 8000:8000
-    links:
-      - data:data
     environment:
       DATABASE_URL: 'postgres://hello:django@data:5432/default'
+    links:
+      - data:data
     command: [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
 
   data:

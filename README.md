@@ -16,25 +16,22 @@ Install all dependencies (includes dev)
 $ pipenv install --dev
 ```
 
+Clone environment from example file, update it by yourself if needed.
+
+```
+$ cp .env.example .env
+```
+
 Run application directly.
-Note: the database url is 'postgres://hello:django@localhost:5432/default'
 
 ```
 $ make run
 ```
 
-Run application within Docker environment
+Or run application within Docker environment
 
 ```
-$ make run-docker
+$ make up
 ```
 
 View [the result](http://localhost:8000/api/foo/hello) on the browser.
-
-### Other Makefile commands
-
-Clean up Docker exited containers & dangling images.
-
-```
-$ make clean
-```

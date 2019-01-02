@@ -4,8 +4,14 @@ Diango management script
 
 import os
 import sys
+from dotenv import load_dotenv
+# import ptvsd
+
 
 if __name__ == '__main__':
+    # address = ('0.0.0.0', 3000)
+    # ptvsd.enable_attach('', address)
+    load_dotenv(verbose=True)
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
     try:
         from django.core.management import execute_from_command_line
