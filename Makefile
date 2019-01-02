@@ -5,6 +5,12 @@ up:
 	pipenv lock --requirements > requirements.txt
 	docker-compose up --build
 
+up-data:
+	docker-compose up -d data
+
+up-app:
+	docker-compose up --build app
+
 down:
 	docker-compose down
 
