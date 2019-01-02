@@ -1,0 +1,15 @@
+.venv/
+.vscode/
+data/
+docs/
+static/
+tests/
+.dockerfile
+.gitignore
+.python-version
+.travis.yml
+.docker-compose.yml
+Makefile
+Pipfile
+Pipfile.lock
+README.md
