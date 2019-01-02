@@ -28,5 +28,6 @@ RUN mkdir -p /code
 WORKDIR /code
 
 ENV DJANGO_SETTINGS_MODULE=myproject.settings
+ENV DJANGO_MANAGEPY_MIGRATE=on
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
