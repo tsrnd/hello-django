@@ -3,9 +3,9 @@ services:
   app:
     build:
       context: .
-      dockerfile: .dockerfile
+      dockerfile: dockerfile
     volumes:
-      - .:/var/www
+      - .:/code
     expose:
       - 8000
     ports:
@@ -14,6 +14,7 @@ services:
       - data:data
     environment:
       DATABASE_URL: 'postgres://hello:django@data:5432/default'
+    command: [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
 
   data:
     image: postgres:11.1-alpine
