@@ -4,11 +4,15 @@ python:
   - '3.7.1'
 services:
   - postgresql
+cache:
+  directories:
+    - ~/.cache/pip/
 install:
   - pip install pipenv
   - pipenv install --dev
 before_script:
-  - psql -c 'create database default;' -U postgres
-  - psql -c "CREATE USER hello WITH PASSWORD 'django';" -U postgres
+  - psql -c "create database 'default';" -U postgres
+  - psql -c "CREATE USER 'hello' WITH PASSWORD 'django';" -U postgres
 script:
+  - make migrate
   - timeout 100s make test
