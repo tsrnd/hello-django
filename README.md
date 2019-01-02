@@ -16,24 +16,25 @@ Install all dependencies (includes dev)
 $ pipenv install --dev
 ```
 
-## Deployment
-
-### Local environment with Docker
-
-Start Postgres database service
+Run application directly.
+Note: the database url is 'postgres://hello:django@localhost:5432/default'
 
 ```
-$ docker-compose up -d data
+$ make run
 ```
 
-Start Hello-Django application service
+Run application within Docker environment
 
 ```
-$ docker-compose up --build app
+$ make run-docker
 ```
 
-### Testing (Staging) environment with Docker
+View [the result](http://localhost:8000/api/foo/hello) on the browser.
 
-### User Acceptance Testing (UAT) environment with Docker
+### Other Makefile commands
 
-### Production (PROD) environment with Docker
+Clean up Docker exited containers & dangling images.
+
+```
+$ make clean
+```

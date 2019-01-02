@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: dockerfile
+    tty: true
     volumes:
       - .:/code
     expose:
