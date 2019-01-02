@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
+    'polls_api',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,8 +81,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'db_team1',
         'USER': 'postgres',
-        'PASSWORD': 'mypass',
-        'HOST': 'db',
+        'PASSWORD': 'changeme',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
