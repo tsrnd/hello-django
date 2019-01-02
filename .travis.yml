@@ -4,7 +4,6 @@ python:
   - '3.7.1'
 install:
   - pip install pipenv
-  - pipenv sync
-  - pipenv sync --dev
+  - pipenv install --dev
 script:
-  - timeout 100s pipenv run pytest
+  - timeout 100s make test
