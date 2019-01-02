@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+import inject
+
+from api.providers.configs import api_providers_config
+
+inject.configure_once(api_providers_config)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('v1/', include('api.urls')),
