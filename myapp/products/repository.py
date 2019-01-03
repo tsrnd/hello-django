@@ -21,7 +21,7 @@ class RepositoryInterface(metaclass=ABCMeta):
         pass
 
 
-class ProductRepository:
+class ProductRepository(RepositoryInterface):
     """This class does blah blah."""
     redis = inject.attr(Cache)  # type: Cache
 
@@ -39,7 +39,6 @@ class ProductRepository:
             im_url = im_url.decode('utf-8')
 
         product.im_url = im_url
-
         return product
 
     def get_products(self):

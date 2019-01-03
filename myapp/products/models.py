@@ -8,4 +8,4 @@ class Product(models.Model):
     im_url = models.CharField(max_length=255)
 
     def __str__(self):
-        return "{} = {}".format(self.name, self.category)
+        return "{} has id {} = {}".format(self.name, self.id, self.category)
