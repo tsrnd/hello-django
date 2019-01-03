@@ -7,18 +7,12 @@ services:
 cache:
   directories:
     - $HOME/.docker/images/
-    - $HOME/.cache/pip/
 before_install:
   - cp .env.example .env
   - make load-images
 install:
-  - pip install pipenv
-  - pipenv --venv
-  - pipenv install --dev
-script:
   - make up-data
-  - sleep 3
-  - make migrate
-  - timeout 100s make test
+script:
+  - timeout 120s make test
 before_cache:
   - make save-images
