@@ -15,6 +15,4 @@ urlpatterns = [
         ProductHandler.as_view(view_factory=ProductUsecaseFactory),
         name='get-product',
     ),
-    path('test', include('test.urls')),
-    # path('admin/', admin.site.urls),
 ]

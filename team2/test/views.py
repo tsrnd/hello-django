@@ -1,8 +1,17 @@
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
+from django.views import generic
+
+from .models import User
 
 # Create your views here.
-from django.http import HttpResponse
 
+class IndexView(generic.ListView):
+    model = User
+    template_name = 'test/index.html'
+    context_object_name = 'user_list'
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the test index.")
+class DetailView(generic.DetailView):
+    model = User
+    template_name = 'test/detail.html'
