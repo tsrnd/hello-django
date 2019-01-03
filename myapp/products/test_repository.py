@@ -37,7 +37,6 @@ class ProductRedisTestCaseGetFromRedisSuccess(TestCase):
             ).bind(RepositoryInterface, ProductRepository()))
         Product.objects.create(name="Product1", category=1, im_url="1.jpg")
         Product.objects.create(name="Product2", category=1, im_url="2.jpg")
-        print(Product.objects.all())
 
     def test_product_image_is_exist_on_redis(self):
         product = ProductRepository().get_product(3)
