@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'topics.apps.TopicsConfig',
     'snippets.apps.SnippetsConfig',
     'rest_framework',
+    'products.apps.ProductsConfig',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'ddp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres', #DB name.
         'USER': 'postgres',
         'HOST': 'db', # set in docker-compose.yml
