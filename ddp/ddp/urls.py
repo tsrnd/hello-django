@@ -25,4 +25,5 @@ urlpatterns = [
     #url(r'^', include(('posts.urls', 'posts'), namespace='posts')),
     url(r'^', include(('topics.urls', 'topics'), namespace='topics')),
     path('', include('snippets.urls')),
+    url(r'^', include(('employees.urls', 'employees'), namespace='employees')),
 ]
