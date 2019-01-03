@@ -1,13 +1,27 @@
-class ProductUsecase:
+import inject
+
+from abc import ABCMeta, abstractmethod
+from api.products.repositories import *
+
+class UsecaseInterface(metaclass=ABCMeta):
+    """ This class is usecase interface """
+    @abstractmethod
+    def get_products(self):
+        pass
     
-    def __init__(self, product_repository):
-        self.repo = product_repository
+    @abstractmethod
+    def get_product(self, _id):
+        pass
+
+class ProductUsecase:
+
+    repository: RepositoryInterface = inject.attr(RepositoryInterface)
     
     def get_products(self):
-        return self.repo.get_products()
+        return self.repository.get_products()
 
     def get_product(self, _id):
-        product = self.repo.get_product(_id)
+        product = self.repository.get_product(_id)
         if product is None:
             return None, 404
         return product, 200

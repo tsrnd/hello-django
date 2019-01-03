@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
+import inject
 
 if __name__ == '__main__':
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'team2.settings')
@@ -13,3 +14,8 @@ if __name__ == '__main__':
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
+
+
+# Inject all providers
+# from api.providers.configs import api_providers_config
+# inject.configure_once(api_providers_config)
