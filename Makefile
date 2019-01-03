@@ -1,28 +1,42 @@
-run:
-	pipenv run python manage.py runserver 0.0.0.0:8000
+install:
+	if ! [[ -f '.env' ]]; then \
+		cp .env.example .env; \
+	fi
+	pipenv install -d
+
+lock:
+	pipenv lock -r > requirements.txt
+	pipenv lock -d -r > requirements-dev.txt
+
+build:
+	make lock
+	make migrations
+	docker-compose build app
 
 up:
-	pipenv lock --requirements > requirements.txt
-	docker-compose up --build
+	make build
+	docker-compose up
 
 up-data:
 	docker-compose up -d data
 
 up-app:
-	docker-compose up --build app
+	make build
+	docker-compose up app
 
 down:
 	docker-compose down
 
 clean:
 	docker ps -aq -f status=exited | xargs docker rm
-	docker images -q --filter dangling=true | xargs docker rmi
+	docker images -q -f dangling=true | xargs docker rmi
 
-migrate:
-	pipenv run python manage.py migrate
+migrations:
+	pipenv run python manage.py makemigrations
 
 test:
-	pipenv run pytest
+	make build
+	docker-compose run app pytest
 
 load-images:
 	if [[ -d "$$HOME/.docker/images" ]]; then \
@@ -31,5 +45,5 @@ load-images:
 
 save-images:
 	mkdir -p "$$HOME/.docker/images"
-	docker images -a --filter='dangling=false' --format '{{.Repository}}:{{.Tag}} {{.ID}}' \
+	docker images -a --filter dangling=false -f '{{.Repository}}:{{.Tag}} {{.ID}}' \
   	| xargs -n 2 -t sh -c 'test -e $$HOME/.docker/images/$$1.tar.gz || docker save $$0 | gzip -2 > $$HOME/.docker/images/$$1.tar.gz';

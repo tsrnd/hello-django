@@ -4,18 +4,21 @@
 
 ## Development
 
-Make sure `pipenv` sticks the virtualenv in `./.venv` by setting the
+Make sure:
+- `pipenv` sticks the virtualenv in `./.venv` by setting the
  `PIPENV_VENV_IN_PROJECT` environment variable.
+- Tell Python don't generate `__pycache__` directory.
 
 ```bash
 # ~/.bashrc, ~/.bash_profile, ~/.zshrc
-PIPENV_VENV_IN_PROJECT=1
+export PIPENV_VENV_IN_PROJECT=1
+export PYTHONDONTWRITEBYTECODE=1
 ```
 
 Install all dependencies (includes dev).
 
 ```bash
-$ pipenv install --dev
+$ make install
 ```
 
 Clone environment from example file, update it by yourself if needed.
