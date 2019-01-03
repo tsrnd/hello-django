@@ -18,11 +18,11 @@ from django.urls import path, include
 
 import inject
 
-from api.providers.configs import api_providers_config
 from team2.infrastructure import cache
-
-inject.configure_once(api_providers_config)
 inject.configure_once(cache)
+
+from api.providers.configs import api_providers_config
+inject.configure_once(api_providers_config)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

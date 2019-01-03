@@ -25,7 +25,7 @@ class ProductsHandler(View):
 class ProductHandler(View):
     """This class processing about a product"""
 
-    view_factory = None
+    usecase: UsecaseInterface = inject.attr(ProductUsecase)
     def get(self, request, id):
         product, status = self.usecase.get_product(id)
         if status != 200:

@@ -13,9 +13,8 @@ class UsecaseInterface(metaclass=ABCMeta):
     def get_product(self, _id):
         pass
 
-class ProductUsecase:
-
-    repository: RepositoryInterface = inject.attr(RepositoryInterface)
+class ProductUsecase(UsecaseInterface):
+    repository: RepositoryInterface = inject.attr(ProductRepository)
     
     def get_products(self):
         return self.repository.get_products()
