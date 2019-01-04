@@ -13,3 +13,5 @@ Makefile
 Pipfile
 Pipfile.lock
 README.md
+__pycache__/
+.pyc
