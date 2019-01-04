@@ -9,7 +9,7 @@ cache:
     - $HOME/.docker/images/
     - $HOME/.cache/pip/
 before_install:
-  - bash ./scripts/load-images.sh
+  - bash ./scripts/load-images.sh || true
 install:
   - cp .env.example .env
 script:
