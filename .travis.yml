@@ -23,8 +23,6 @@ install:
   - pip install pylint-django
   - pipenv install --dev
 script:
-  - echo $TRAVIS_REPO_SLUG
-  - echo $TRAVIS_PULL_REQUEST
   - find . -iname "*.py" | xargs pylint --load-plugins pylint_django
   - make up-data
   - sleep 3
