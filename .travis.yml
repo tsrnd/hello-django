@@ -12,6 +12,7 @@ cache:
   directories:
     - $HOME/.docker/images/
 before_install:
+  - chmod +x $WORKDIR/traviscomment.sh
   - make load-images
 install:
   - cp .env.example .env
@@ -20,6 +21,6 @@ script:
   - 'docker-compose run app pylint --msg-template="pylint-response: {path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" myproject myapp'
   - docker-compose run app pytest
 after_failure:
-  - docker-compose run app ./traviscomment.sh
+  - $WORKDIR/traviscomment.sh
 before_cache:
   - make save-images
