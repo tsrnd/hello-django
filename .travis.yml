@@ -13,13 +13,16 @@ before_install:
   - cp .env.example .env
 install:
   - pip install pipenv
-  - pip install pylint
   - pipenv lock --pre --clear
+  - pip install pylint
   - pipenv install --dev
 script:
   - make up-data
   - sleep 3
+  - make makemigrations
+  - sleep 1
   - make migrate
+  # - pipenv run pylint ./myapp
   - timeout 100s make test
 before_cache:
   - mkdir -p $HOME/docker && docker images -a --filter='dangling=false' --format '{{.Repository}}:{{.Tag}} {{.ID}}' | xargs -n 2 -t sh -c 'test -e $HOME/docker/$1.tar.gz || docker save $0 | gzip -2 > $HOME/docker/$1.tar.gz'

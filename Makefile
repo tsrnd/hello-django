@@ -20,6 +20,8 @@ clean:
 
 migrate:
 	pipenv run python manage.py migrate
+makemigrations:
+	pipenv run python manage.py makemigrations
 
 test:
 	pipenv run pytest
