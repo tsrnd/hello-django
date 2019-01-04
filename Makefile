@@ -45,7 +45,7 @@ test:
 
 lint:
 	@make build
-	@docker-compose run app pylint myproject myapp
+	@docker-compose run app pylint --msg-template="pylint-response: {path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" myproject myapp
 
 load-images:
 	@if [[ -d "$$HOME/.docker/images" ]]; then \

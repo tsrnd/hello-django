@@ -12,18 +12,14 @@ cache:
   directories:
     - $HOME/.docker/images/
 before_install:
-  - chmod +x $WORKDIR/traviscomment.sh
   - make load-images
 install:
   - cp .env.example .env
-  - pip install coverage
-  - pip install pylint
-  - pip install pylint-django
 script:
   - docker-compose build app
-  - 'find . -iname "*.py" | xargs pylint --msg-template="pylint-response: {path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" --load-plugins pylint_django'
-  - timeout 100s coverage run --source='.' manage.py test myapp.products
+  - 'docker-compose run app pylint --msg-template="pylint-response: {path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" myproject myapp'
+  - docker-compose run app pytest
 after_failure:
-  - $WORKDIR/traviscomment.sh
+  - docker-compose run app ./traviscomment.sh
 before_cache:
   - make save-images
