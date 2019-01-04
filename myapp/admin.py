@@ -1,4 +1,6 @@
 from django.contrib import admin
-from myapp.foo import models
+from .foo import models
 
-admin.register(models.Foo)
+admin.site.register(models.Foo)
+admin.site.register(models.Question)
+admin.site.register(models.Choise)
