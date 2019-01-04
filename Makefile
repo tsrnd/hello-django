@@ -46,21 +46,3 @@ test:
 lint:
 	@make build
 	@docker-compose run app pylint myproject myapp
-
-ci-test:
-	@docker-compose run app pytest
-
-ci-lint:
-	@docker-compose run app sh ./scripts/pylint.sh
-	@pip install -U lintly
-	@cat ./reports/pylint.json | lintly --format=pylint-json --api-key=$$GITHUB_ACCESS_TOKEN
-
-ci-load-images:
-	@if [[ -d "$$HOME/.docker/images" ]]; then \
-  	find "$$HOME/.docker/images" -name "*.tar.gz" | xargs -I {file} sh -c "zcat < {file} | docker load"; \
-	fi
-
-ci-save-images:
-	@mkdir -p "$$HOME/.docker/images"
-	@docker images -a -f dangling=false --format '{{.Repository}}:{{.Tag}} {{.ID}}' \
-  	| xargs -n 2 -t sh -c 'test -e $$HOME/.docker/images/$$1.tar.gz || docker save $$0 | gzip -2 > $$HOME/.docker/images/$$1.tar.gz';

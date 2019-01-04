@@ -9,11 +9,11 @@ cache:
     - $HOME/.docker/images/
     - $HOME/.cache/pip/
 before_install:
-  - make ci-load-images
+  - bash ./scripts/load-images.sh
 install:
   - cp .env.example .env
 script:
-  - make ci-lint
-  - make ci-test
+  - bash ./scripts/lint-review.sh
+  - docker-compose run app pytest
 before_cache:
-  - make ci-save-images
+  - bash ./scripts/save-images.sh
