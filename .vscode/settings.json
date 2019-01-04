@@ -20,4 +20,5 @@
   "python.linting.pep8Enabled": true,
   "python.unitTest.unittestEnabled": false,
   "python.unitTest.pyTestEnabled": true,
+  "python.formatting.provider": "yapf",
 }
