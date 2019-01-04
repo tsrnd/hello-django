@@ -13,11 +13,14 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 4
   },
-  "python.pythonPath": ".venv/bin/python",
+  "python.pythonPath": "/Users/mba0051/.pyenv/versions/3.7.1/bin/python",
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "python.linting.maxNumberOfProblems": 20,
   "python.linting.pep8Enabled": true,
   "python.unitTest.unittestEnabled": false,
-  "python.unitTest.pyTestEnabled": true,
+  "python.unitTest.pyTestEnabled": false,
+  "python.unitTest.promptToConfigure": false,
+  "python.unitTest.nosetestsEnabled": false,
+  "python.formatting.provider": "autopep8",
 }
