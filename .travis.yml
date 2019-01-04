@@ -4,6 +4,10 @@ python:
   - '3.7.1'
 services:
   - docker
+env:
+  - WORKDIR=/home/travis/build/tsrnd/hello-django
+matrix:
+  fail_fast: true
 cache:
   directories:
     - $HOME/docker
@@ -14,8 +18,11 @@ before_install:
 install:
   - pip install pipenv
   - pip install coverage
+  - pip install pylint
+  - pip install pylint-django
   - pipenv install --dev
 script:
+  - find . -iname "*.py" | xargs pylint --load-plugins pylint_django
   - make up-data
   - sleep 3
   - make migrate
