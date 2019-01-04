@@ -43,6 +43,10 @@ test:
 	@make build
 	@docker-compose run app pytest
 
+lint:
+	@make build
+	@docker-compose run app pylint myproject myapp
+
 load-images:
 	@if [[ -d "$$HOME/.docker/images" ]]; then \
   	find "$$HOME/.docker/images" -name "*.tar.gz" | xargs -I {file} sh -c "zcat < {file} | docker load"; \
