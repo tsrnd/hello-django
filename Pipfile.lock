@@ -412,6 +412,20 @@
             "index": "pypi",
             "version": "==2.2.2"
         },
+        "pylint-django": {
+            "hashes": [
+                "sha256:23d673c940710081d1e7417886cd14b0eca39ca9d9e50373961903cf2a607ccd",
+                "sha256:ea3ae50a42904feecceb408d173dec00098938f3e5690d2c0fda2dda5dde5825"
+            ],
+            "index": "pypi",
+            "version": "==2.0.5"
+        },
+        "pylint-plugin-utils": {
+            "hashes": [
+                "sha256:8ad25a82bcce390d1d6b7c006c123e0cb18051839c9df7b8bdb7823c53fe676e"
+            ],
+            "version": "==0.4"
+        },
         "pytest": {
             "hashes": [
                 "sha256:f689bf2fc18c4585403348dd56f47d87780bf217c53ed9ae7a3e2d7faa45f8e9",
