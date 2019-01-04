@@ -13,6 +13,8 @@ before_install:
   - cp .env.example .env
 install:
   - pip install pipenv
+  - pip install pylint
+  - pipenv lock --pre --clear
   - pipenv install --dev
 script:
   - make up-data
