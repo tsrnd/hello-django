@@ -4,7 +4,7 @@
 <p>
     <strong>{{ error_message }}</strong>
 </p>{% endif %}
-
+{% if question.choice_set.all %}
 <form action="{% url 'polls:vote' question.id %}" method="post">
     {% csrf_token %} {% for choice in question.choice_set.all %}
     <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
@@ -12,4 +12,5 @@
     <br> {% endfor %}
     <input type="submit" value="Vote">
 </form>
+{% endif %}
 <a href="{% url 'polls:update' question.id %}">Update</a>
