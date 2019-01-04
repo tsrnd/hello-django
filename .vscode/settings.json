@@ -21,7 +21,4 @@
   "python.unitTest.unittestEnabled": false,
   "python.unitTest.pyTestEnabled": true,
   "python.formatting.provider": "yapf",
-  "python.linting.pylintArgs": [
-    "--load-plugins=pylint_django"
-  ]
 }

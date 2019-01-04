@@ -10,6 +10,7 @@ done
 
 if [ "$DJANGO_MANAGEPY_MIGRATE" = '1' ]; then
     python manage.py migrate --noinput
+    python manage.py seed
 fi
 
 if [ "$DJANGO_MANAGEPY_COLLECTSTATIC" = '1' ]; then
