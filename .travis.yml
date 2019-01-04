@@ -23,7 +23,7 @@ install:
   - pip install pylint-django
   - pipenv install --dev
 script:
-  - find . -iname "*.py" | xargs pylint --load-plugins pylint_django
+  - find . -iname "*.py" | xargs pylint --msg-template='pylint-response: {path}:{line}: [{msg_id}({symbol}), {obj}] {msg}' --load-plugins pylint_django
   - make up-data
   - sleep 3
   - make migrate
