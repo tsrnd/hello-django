@@ -9,7 +9,9 @@ done
 >&2 echo "Postgres is up - continuing"
 
 if [ "$DJANGO_MANAGEPY_MIGRATE" = '1' ]; then
-    python manage.py makemigrations; python manage.py migrate --noinput
+    python manage.py makemigrations
+    python manage.py migrate --noinput
+    python manage.py seed
 fi
 
 if [ "$DJANGO_MANAGEPY_COLLECTSTATIC" = '1' ]; then
