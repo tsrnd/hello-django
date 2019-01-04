@@ -9,4 +9,6 @@ class Employees(models.Model):
     join_date = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return "%s %s" % (self.first_name, self.last_name)
+        return str(self.__class__) + '\n' + '\n'.join(
+            ('{} = {}'.format(item, self.__dict__[item])
+             for item in self.__dict__))
