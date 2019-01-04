@@ -13,7 +13,7 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 4
   },
-  "python.pythonPath": ".venv/bin/python",
+  "python.pythonPath": "/Users/loctangv./.local/share/virtualenvs/hello-django-sp8Sidwx/bin/python",
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "python.linting.maxNumberOfProblems": 20,
