@@ -11,9 +11,11 @@ before_install:
   - make load-images
 install:
   - cp .env.example .env
+  - export LINTLY_API_KEY="$GITHUB_ACCESS_TOKEN"
 script:
   - docker-compose build app
-  - docker-compose run app pylint myproject myapp
+  - docker-compose run app pylint myproject myapp \
+    --output-format=json | lintly --format=pylint-json
   - docker-compose run app pytest
 before_cache:
   - make save-images
