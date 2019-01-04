@@ -1,0 +1,5 @@
+<form action="/api/categories/" method="post">
+    {% csrf_token %}
+    Name: <input type="text" name="name">
+    <input type="submit" value="Submit">
+</form>
