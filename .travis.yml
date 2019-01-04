@@ -8,13 +8,11 @@ cache:
   directories:
     - $HOME/.docker/images/
 before_install:
-  - make load-images
+  - make ci-load-images
 install:
   - cp .env.example .env
-  - pip install -U lintly
-  - docker-compose build app
 script:
-  - docker-compose run app pylint myproject myapp --output-format=json | lintly --format=pylint-json --api-key=$GITHUB_ACCESS_TOKEN
-  - docker-compose run app pytest
+  - make ci-lint
+  - make ci-test
 before_cache:
-  - make save-images
+  - make ci-save-images
