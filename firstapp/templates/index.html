@@ -1,0 +1,32 @@
+{% load static %} <!DOCTYPE html>
+<html>
+  <head>
+    <link href="{% static 'employees/styles.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <table id="customers" style="width:100%">
+      {% if employee_list %}
+      <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Email</th>
+        <th>Join Date</th>
+      </tr>
+      {% for employee in employee_list %}
+      <tr>
+        <td>
+          <a href="/api/employees/{{ employee.id }}">
+            {{ employee.last_name }}
+          </a>
+        </td>
+        <td>{{ employee.first_name }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.join_date }}</td>
+        {% endfor %}
+      </tr>
+      {% else %}
+      <p>No polls are available.</p>
+      {% endif %}
+    </table>
+  </body>
+</html>
