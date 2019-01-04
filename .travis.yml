@@ -12,7 +12,7 @@ before_install:
 install:
   - cp .env.example .env
 script:
-  - timeout 120s docker-compose build app
-  - timeout 120s docker-compose run app pytest
+  - docker-compose build app
+  - docker-compose run app pytest
 before_cache:
   - make save-images
