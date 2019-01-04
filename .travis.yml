@@ -8,10 +8,9 @@ cache:
   directories:
     - $HOME/.docker/images/
 before_install:
-  - cp .env.example .env
   - make load-images
 install:
-  - make up-data
+  - cp .env.example .env
 script:
   - timeout 120s make test
 before_cache:

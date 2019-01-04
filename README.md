@@ -27,12 +27,6 @@ Clone environment from example file, update it by yourself if needed.
 $ cp .env.example .env
 ```
 
-Run application directly
-
-```
-$ make run
-```
-
 or run application within Docker environment.
 
 ```

@@ -1,50 +1,54 @@
 install:
-	if ! [[ -f '.env' ]]; then \
+	@if ! [[ -f '.env' ]]; then \
 		cp .env.example .env; \
 	fi
-	pipenv install -d
-
-lock:
-	pipenv lock -r > requirements.txt
-	pipenv lock -d -r > requirements-dev.txt
-
-build:
-	make lock
-	make migrations
-	docker-compose build app
+	@pipenv install -d
 
 up:
-	make build
-	docker-compose up
+	@make build
+	@docker-compose up -d app
+	@docker-compose logs -f app
+
+lock:
+	@pipenv lock -r > requirements.txt
+	@pipenv lock -d -r > requirements-dev.txt
+
+build:
+	@make lock
+	@make migrations
+	@docker-compose build app
 
 up-data:
-	docker-compose up -d data
+	@docker-compose up -d data cache
+	@sleep 3
 
 up-app:
-	make build
-	docker-compose up app
+	@make build
+	@docker-compose up -d app
+	@docker-compose logs -f app
 
 down:
-	docker-compose down
+	@docker-compose down
 
 clean:
-	docker ps -aq -f status=exited | xargs docker rm
-	docker images -q -f dangling=true | xargs docker rmi
-	find . -name "__pycache__" | xargs rm -rf
+	@docker ps -aq -f status=exited | xargs docker rm
+	@docker images -q -f dangling=true | xargs docker rmi
+	@find . -name "__pycache__" | xargs rm -rf
 
 migrations:
-	pipenv run python manage.py makemigrations
+	@make up-data
+	@pipenv run python manage.py makemigrations
 
 test:
-	make build
-	docker-compose run app pytest
+	@make build
+	@docker-compose run app pytest
 
 load-images:
-	if [[ -d "$$HOME/.docker/images" ]]; then \
+	@if [[ -d "$$HOME/.docker/images" ]]; then \
   	find "$$HOME/.docker/images" -name "*.tar.gz" | xargs -I {file} sh -c "zcat < {file} | docker load"; \
 	fi
 
 save-images:
-	mkdir -p "$$HOME/.docker/images"
-	docker images -a --filter dangling=false -f '{{.Repository}}:{{.Tag}} {{.ID}}' \
+	@mkdir -p "$$HOME/.docker/images"
+	@docker images -a --filter dangling=false -f '{{.Repository}}:{{.Tag}} {{.ID}}' \
   	| xargs -n 2 -t sh -c 'test -e $$HOME/.docker/images/$$1.tar.gz || docker save $$0 | gzip -2 > $$HOME/.docker/images/$$1.tar.gz';
