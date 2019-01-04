@@ -10,26 +10,20 @@ matrix:
   fail_fast: true
 cache:
   directories:
-    - $HOME/docker
-    - $HOME/.cache/pip/
+    - $HOME/.docker/images/
 before_install:
-  - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
-  - cp .env.example .env
   - chmod +x $WORKDIR/traviscomment.sh
+  - make load-images
 install:
-  - pip install pipenv
+  - cp .env.example .env
   - pip install coverage
   - pip install pylint
   - pip install pylint-django
-  - pipenv install --dev
 script:
+  - docker-compose build app
   - 'find . -iname "*.py" | xargs pylint --msg-template="pylint-response: {path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" --load-plugins pylint_django'
-  - make up-data
-  - sleep 3
-  - make migrate
   - timeout 100s coverage run --source='.' manage.py test myapp.products
-  - coverage report
 after_failure:
   - $WORKDIR/traviscomment.sh
 before_cache:
-  - mkdir -p $HOME/docker && docker images -a --filter='dangling=false' --format '{{.Repository}}:{{.Tag}} {{.ID}}' | xargs -n 2 -t sh -c 'test -e $HOME/docker/$1.tar.gz || docker save $0 | gzip -2 > $HOME/docker/$1.tar.gz'
+  - make save-images
