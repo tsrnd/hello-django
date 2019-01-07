@@ -13,7 +13,7 @@ services:
       - 8000:8000
     environment:
       DATABASE_URL: 'postgres://hello:django@data:5432/default'
-      CACHE_URL: 'postgres://hello:django@data:5432/default'
+      CACHE_URL: 'redis://cache:6379/'
     links:
       - data:data
       - cache:cache
