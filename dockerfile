@@ -4,10 +4,11 @@ ENV PYTHONBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     INSIDE_DOCKER=1
 
-ADD requirements.txt /
+ADD requirements* /
 
 RUN set -ex \
-    && apk add --no-cache --virtual .build-deps \
+    && apk add -U --no-cache --virtual .build-deps \
+        g++ \
         gcc \
         make \
         libc-dev \
@@ -15,9 +16,10 @@ RUN set -ex \
         linux-headers \
         pcre-dev \
         postgresql-dev \
-    && pip install -r requirements.txt --no-cache-dir \
+    && pip install -U -r requirements.txt --no-cache-dir \
+    && pip install -U -r requirements-dev.txt --no-cache-dir \
     && apk del .build-deps \
-    && apk add --no-cache \
+    && apk add -U --no-cache \
         postgresql-client \
         redis
 
