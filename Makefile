@@ -46,13 +46,3 @@ test:
 lint:
 	@make build
 	@docker-compose run app pylint myproject myapp
-
-load-images:
-	@if [[ -d "$$HOME/.docker/images" ]]; then \
-  	find "$$HOME/.docker/images" -name "*.tar.gz" | xargs -I {file} sh -c "zcat < {file} | docker load"; \
-	fi
-
-save-images:
-	@mkdir -p "$$HOME/.docker/images"
-	@docker images -a --filter dangling=false -f '{{.Repository}}:{{.Tag}} {{.ID}}' \
-  	| xargs -n 2 -t sh -c 'test -e $$HOME/.docker/images/$$1.tar.gz || docker save $$0 | gzip -2 > $$HOME/.docker/images/$$1.tar.gz';
