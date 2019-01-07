@@ -13,7 +13,6 @@ def index(request):
     }
     return HttpResponse(teamplate.render(context, request))
 
-
 def hello(request):
     text = """<h1>Hello Django!</h1>"""
     return HttpResponse(text)
