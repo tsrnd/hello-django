@@ -12,3 +12,4 @@ class Employees(models.Model):
         return str(self.__class__) + '\n' + '\n'.join(
             ('{} = {}'.format(item, self.__dict__[item])
              for item in self.__dict__))
+        # return "%s %s" % (self.first_name, self.last_name)

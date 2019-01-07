@@ -16,11 +16,11 @@
       {% for employee in employee_list %}
       <tr>
         <td>
-          <a href="/api/employees/{{ employee.id }}/detail">
-            {{ employee.id }}
-          </a>
+          <a href="{% url 'detail' employee.id %}"> {{ employee.id }} </a>
         </td>
-        <td>{{ employee.first_name }}</td>
+        <td>
+          <a href="{% url 'index' %}">{{ employee.first_name }}</a>
+        </td>
         <td>{{ employee.last_name }}</td>
         <td>{{ employee.email }}</td>
         <td>{{ employee.join_date }}</td>
@@ -29,6 +29,7 @@
       {% else %}
       <p>No polls are available.</p>
       {% endif %}
-    </table>
+    </table><br>
+    <a href="{% url 'create_employee' %}">Create</a>
   </body>
 </html>
