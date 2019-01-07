@@ -6,18 +6,14 @@ services:
   - docker
 cache:
   directories:
-    - $HOME/docker
+    - $HOME/.docker/images/
     - $HOME/.cache/pip/
 before_install:
-  - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
-  - cp .env.example .env
+  - bash ./scripts/load-images.sh || true
 install:
-  - pip install pipenv
-  - pipenv install --dev
+  - cp .env.example .env
 script:
-  - make up-data
-  - sleep 3
-  - make migrate
-  - timeout 100s make test
+  - bash ./scripts/lint-review.sh
+  - docker-compose run app pytest
 before_cache:
-  - mkdir -p $HOME/docker && docker images -a --filter='dangling=false' --format '{{.Repository}}:{{.Tag}} {{.ID}}' | xargs -n 2 -t sh -c 'test -e $HOME/docker/$1.tar.gz || docker save $0 | gzip -2 > $HOME/docker/$1.tar.gz'
+  - bash ./scripts/save-images.sh
