@@ -7,13 +7,13 @@ services:
 cache:
   directories:
     - $HOME/.docker/images/
+    - $HOME/.cache/pip/
 before_install:
-  - make load-images
+  - bash ./scripts/load-images.sh || true
 install:
   - cp .env.example .env
 script:
-  - docker-compose build app
-  - docker-compose run app pylint myproject myapp
+  - bash ./scripts/lint-review.sh
   - docker-compose run app pytest
 before_cache:
-  - make save-images
+  - bash ./scripts/save-images.sh
