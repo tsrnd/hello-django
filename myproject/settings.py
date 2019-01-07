@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'myapp',
     'polls.apps.PollsConfig',
     'blog',
-    'learning_logs'
 ]
 
 MIDDLEWARE = [
