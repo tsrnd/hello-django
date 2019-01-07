@@ -3,4 +3,5 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("""Event Index""")
+    text = """Nothing here!"""
+    return HttpResponse(text)

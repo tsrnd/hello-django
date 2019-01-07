@@ -1,14 +1,20 @@
+"""Dependency injection example, engines module."""
+
+
 class Engine(object):
-    _engine = ''
+    """Example engine base class.
+    Engine is a heart of every car. Engine is a very common term and could be
+    implemented in very different ways.
+    """
 
 
 class GasolineEngine(Engine):
-    _engine = "Gasoline engine."
+    """Gasoline engine."""
 
 
 class DieselEngine(Engine):
-    _engine = "Diesel engine."
+    """Diesel engine."""
 
 
 class ElectroEngine(Engine):
-    _engine = "Electro engine."
+    """Electro engine."""
