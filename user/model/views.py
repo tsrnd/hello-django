@@ -18,12 +18,14 @@ def create(request,name):
     return HttpResponse(res)
 
 def getUser(request):
-    result = User.objects.all()
-    res = HttpResponse()
-    res.write("<h1>id - user</h1>")
-    for us in result:
-        res.write("<h1>%d - %s</h1>" %(us.id,us.name))
-    return HttpResponse(res)
+    user = User.objects.all()
+    # res = HttpResponse()
+    # res.write("<h1>id - user</h1>")
+    # for us in user:
+    #     res.write("<h1>%d - %s</h1>" %(us.id,us.name))
+    # return HttpResponse(res)
+    return render(request,'user.html',{'users':user})
+
 
 def getName(request,name):
     result = User.objects.filter(name = name)

@@ -1,0 +1,18 @@
+<html>
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Id</th>
+                <th>User Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</html>
