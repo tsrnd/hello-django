@@ -17,12 +17,8 @@
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "python.linting.maxNumberOfProblems": 20,
-  "python.linting.pep8Enabled": false,
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "yapf",
   "python.unitTest.unittestEnabled": false,
   "python.unitTest.pyTestEnabled": true,
-  "python.formatting.provider": "yapf",
-  "editor.formatOnSave": true,
-  "python.linting.pylintArgs": [
-    "--load-plugins=pylint_django"
-  ]
 }
