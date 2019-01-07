@@ -58,7 +58,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,6 +130,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_DIR  = 'static'
+
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+
+# Logging
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

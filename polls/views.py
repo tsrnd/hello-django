@@ -44,3 +44,8 @@ def vote(request, question_id):
         selectedChoice.votes = F('votes') + 1
         selectedChoice.save()
         return HttpResponseRedirect(reverse('polls:results',args=(question.id,)))
+
+def basehome(request):
+    template = 'base.html'
+    context = locals()
+    return render(request, template, context)
