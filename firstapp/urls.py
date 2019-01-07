@@ -10,4 +10,7 @@ urlpatterns = [
         'create_employee_submit',
         views.create_employee_submit,
         name='create_employee_submit'),
+    path('<int:employee_id>/edit', views.edit_employee, name='edit_employee'),
+    path('<int:employee_id>/edit_employee_submit', views.edit_employee_submit, name='edit_employee_submit'),
+    path('<int:employee_id>/delete', views.delete_employee, name='delete_employee')
 ]

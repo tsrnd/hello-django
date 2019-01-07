@@ -12,6 +12,7 @@
         <th>Last Name</th>
         <th>Email</th>
         <th>Join Date</th>
+        <th>Edit/Delete</th>
       </tr>
       {% for employee in employee_list %}
       <tr>
@@ -24,6 +25,7 @@
         <td>{{ employee.last_name }}</td>
         <td>{{ employee.email }}</td>
         <td>{{ employee.join_date }}</td>
+        <td><a href="{% url 'edit_employee' employee.id %}">Edit</a>/<a href="{% url 'delete_employee' employee.id %}">Delete</a></td>
         {% endfor %}
       </tr>
       {% else %}

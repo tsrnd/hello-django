@@ -38,16 +38,16 @@ div {
 </style>
 <body>
 <div>
-  <form action="{% url 'create_employee_submit' %}" method="post">
+  <form action="{% url 'edit_employee_submit' employee.id %}" method="post">
     {% csrf_token %}
     <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+    <input type="text" id="fname" name="firstname" value="{{employee.first_name}}">
 
     <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    <input type="text" id="lname" name="lastname" value="{{employee.last_name}}">
 
     <label for="email">Email</label>
-    <input type="text" id="email" name="email" placeholder="Your email..">
+    <input type="text" id="email" name="email" value="{{employee.email}}">
   
     <input type="submit" value="Submit">
   </form>

@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404
 from .models import Employees
 from django import template
 from django.template.loader import get_template
+import datetime
 
 # Create your views here.
 
@@ -38,3 +39,21 @@ def create_employee_submit(request):
     )
     employee_info.save()
     return redirect('index')
+
+def edit_employee(request, employee_id):
+    employee = Employees.objects.get(pk=employee_id)
+    return render(request,'edit.html',{'employee': employee})
+
+def edit_employee_submit(request,employee_id):
+    emp = Employees.objects.get(pk = employee_id)
+    emp.first_name = request.POST['firstname']
+    emp.last_name = request.POST['lastname']
+    emp.email = request.POST['email']
+    emp.save()
+    return redirect('index')
+
+def delete_employee(request,employee_id):
+    employee = get_object_or_404(Employees, pk=employee_id)
+    employee.delete()
+    return redirect('index')
+
