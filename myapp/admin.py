@@ -1,4 +1,6 @@
 from django.contrib import admin
-from myapp.foo import models
+from myapp.foo.models import Foo
+from myapp.category.models import Category
 
-admin.register(models.Foo)
+admin.site.register(Foo)
+admin.site.register(Category)

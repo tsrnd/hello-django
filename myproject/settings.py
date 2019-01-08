@@ -35,7 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin', 'django.contrib.auth',
     'django.contrib.contenttypes', 'django.contrib.sessions',
-    'django.contrib.messages', 'django.contrib.staticfiles', 'myapp'
+    'django.contrib.messages', 'django.contrib.staticfiles', 'myapp', 'myapp1'
 ]
 
 MIDDLEWARE = [
@@ -52,9 +52,14 @@ ROOT_URLCONF = 'myproject.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'BACKEND':
+        'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'myapp1/templates'),
+            os.path.join(BASE_DIR, 'myapp/templates')
+        ],
+        'APP_DIRS':
+        True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -89,19 +94,23 @@ CACHES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation'
+        'NAME':
+        'django.contrib.auth.password_validation'
         '.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation'
+        'NAME':
+        'django.contrib.auth.password_validation'
         '.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation'
+        'NAME':
+        'django.contrib.auth.password_validation'
         '.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation'
+        'NAME':
+        'django.contrib.auth.password_validation'
         '.NumericPasswordValidator',
     },
 ]
