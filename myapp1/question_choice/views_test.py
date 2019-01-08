@@ -2,7 +2,7 @@ from django.test import TestCase
 import pytest
 import requests
 from django.http import HttpRequest, QueryDict
-from mock import patch
+from unittest.mock import patch
 from myapp1.question_choice.views import index
 from myapp1.question_choice.models import Question
 
