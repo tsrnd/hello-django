@@ -1,12 +1,15 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from myapp1.question_choice.models import Question, Choice
-from django.http import Http404
+from django.http import Http404, HttpResponseServerError
 from django.urls import reverse
 
 
 def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    try:
+        latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    except Exception as err:
+        return HttpResponseServerError(str(err))
     context = {'latest_question_list': latest_question_list}
     return render(request, 'question_choice/index.html', context)
 
@@ -16,6 +19,8 @@ def detail(request, question_id):
         question = Question.objects.get(pk=question_id)
     except Question.DoesNotExist:
         raise Http404("Question does not exist")
+    except Exception as err:
+        return HttpResponseServerError(str(err))
     return render(request, 'question_choice/detail.html',
                   {'question': question})
 
