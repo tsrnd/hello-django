@@ -1,10 +1,9 @@
 from django.contrib import admin
 from myapp.foo import models
 from myapp.cars import cars as car
-from myapp.bookshelf import models as book
+from myapp.snippets import models as snippet
 
 
 admin.register(models.Foo)
 admin.register(car.Car)
-admin.register(book.Author)
-admin.register(book.Book)
+admin.register(snippet.Snippet)
