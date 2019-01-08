@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from .user import User
+from django.core.serializers import serialize
+from django.views.decorators.csrf import csrf_exempt
 
 
 def create(request,name):
@@ -19,11 +21,6 @@ def create(request,name):
 
 def getUser(request):
     user = User.objects.all()
-    # res = HttpResponse()
-    # res.write("<h1>id - user</h1>")
-    # for us in user:
-    #     res.write("<h1>%d - %s</h1>" %(us.id,us.name))
-    # return HttpResponse(res)
     return render(request,'user.html',{'users':user})
 
 
@@ -44,3 +41,13 @@ def delete(reqest,id):
     result = User.objects.get(id = id)
     result.delete()
     return HttpResponse("ok")
+
+@csrf_exempt
+def getUserJson(request):
+    if request.method == 'GET':
+        user = User.objects.all()
+        result = serialize('json',user)
+        return HttpResponse(result,content_type="application/json")
+    else:
+        return HttpResponse("fail")
+    
