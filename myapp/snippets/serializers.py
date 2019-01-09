@@ -34,11 +34,22 @@ class SnippetSerializer(serializers.Serializer):
         model = Snippet
         fields = ('id', 'title', 'code', 'linenos', 'language', 'style')
 
+
 # you're not serializing a model and since you want to display that count I guess, I'd suggest changing the serializer to this.
-class StatSerializer(serializers.Serializer):
+class CustomeSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     title = serializers.CharField(
         required=False, allow_blank=True, max_length=100)
 
     class Meta:
         fields = ('id', 'title')
+
+
+class JoinColumnSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    title = serializers.CharField(
+        required=False, allow_blank=True, max_length=100)
+    content = serializers.CharField(required=False, allow_blank=True)
+
+    class Meta:
+        fields = ('id', 'title', 'content')

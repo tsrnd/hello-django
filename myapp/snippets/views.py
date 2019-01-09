@@ -1,5 +1,5 @@
 from .models import Snippet
-from .serializers import SnippetSerializer, StatSerializer
+from .serializers import SnippetSerializer, CustomeSerializer, JoinColumnSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView
@@ -62,22 +62,25 @@ class SnipListView(ListAPIView):
     queryset = Snippet.objects.raw(
         "SELECT id, title FROM tbl_snipplet GROUP BY id, title order by count(*) desc LIMIT 10"
     )
-    serializer_class = StatSerializer
+    serializer_class = CustomeSerializer
 
     def list(self, request):
         queryset = self.get_queryset()
+        sys.stdout.write('Queryset : ' + str(queryset))
         # the serializer didn't take my RawQuerySet, so made it into a list
-        serializer = StatSerializer(list(queryset), many=True)
+        serializer = CustomeSerializer(list(queryset), many=True)
         return Response(serializer.data)
+
 
 class JoinListView(ListAPIView):
     queryset = Snippet.objects.raw(
-        "SELECT id, title FROM tbl_snipplet GROUP BY id, title order by count(*) desc LIMIT 10"
+        "SELECT tbl_snipplet.id as id, tbl_snipplet.title as title, tbl_post.content as content FROM tbl_snipplet JOIN tbl_post ON tbl_post.snipid = tbl_snipplet.id GROUP BY tbl_snipplet.id, tbl_snipplet.title, content order by tbl_snipplet.id LIMIT 10"
     )
-    serializer_class = StatSerializer
+    serializer_class = JoinColumnSerializer
 
     def list(self, request):
         queryset = self.get_queryset()
+        sys.stdout.write('Queryset : ' + str(queryset))
         # the serializer didn't take my RawQuerySet, so made it into a list
-        serializer = StatSerializer(list(queryset), many=True)
+        serializer = JoinColumnSerializer(list(queryset), many=True)
         return Response(serializer.data)
