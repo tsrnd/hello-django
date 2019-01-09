@@ -3,4 +3,4 @@ from .foo import models
 
 admin.site.register(models.Foo)
 admin.site.register(models.Question)
-admin.site.register(models.Choise)
+admin.site.register(models.Choice)
