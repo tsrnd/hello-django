@@ -51,19 +51,20 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'myproject.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
+{
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': ['templates'],
+    'APP_DIRS': True,
+    'OPTIONS': {
+        'context_processors': [
+            'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
+            "django.core.context_processors.media",
+        ],
     },
+},
 ]
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
@@ -84,24 +85,46 @@ CACHES = {
     }
 }
 
+# SQL log.
+"""LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    }
+}"""
+
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation'
+        'NAME':
+        'django.contrib.auth.password_validation'
         '.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation'
+        'NAME':
+        'django.contrib.auth.password_validation'
         '.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation'
+        'NAME':
+        'django.contrib.auth.password_validation'
         '.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation'
+        'NAME':
+        'django.contrib.auth.password_validation'
         '.NumericPasswordValidator',
     },
 ]
@@ -123,3 +146,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#REST_FRAMEWORK = {
+#    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+#    'PAGE_SIZE': 10
+#}

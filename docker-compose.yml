@@ -28,8 +28,8 @@ services:
       POSTGRES_PASSWORD: 'django'
     restart: always
     volumes:
+      - ./db_initial.sql:/docker-entrypoint-initdb.d/db_initial.sql
       - ./.tmp/data:/var/lib/postgresql/data
-
   cache:
     image: redis:5.0.3-alpine
     ports:
