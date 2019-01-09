@@ -22,7 +22,7 @@ migrations: up-data
 
 # additional commands
 
-up-data: load-env
+up-data:
 	@docker-compose up -d data cache
 	@bash ./scripts/wait-data.sh
 
@@ -38,6 +38,3 @@ clean-all: clean clean-data
 
 lint: build
 	@docker-compose run app pylint myproject myapp
-
-load-env:
-	@export $$(cat .env | xargs echo)
