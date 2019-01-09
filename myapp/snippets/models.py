@@ -18,4 +18,16 @@ class Snippet(models.Model):
         choices=STYLE_CHOICES, default='friendly', max_length=100)
 
     class Meta:
-        db_table = 'tbl_snipplet'
+        db_table = 'tbl_snipplet'  # Table mapping with exits db.
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=200, blank=True, default='')
+    content = models.TextField()
+    snipid = models.ForeignKey(
+        Snippet,  # Object will be link to.
+        db_column='snipid',  # db_column = Foreign Key column name
+        on_delete=models.CASCADE)  # Act in case deleted.
+
+    class Meta:
+        db_table = 'tbl_post'

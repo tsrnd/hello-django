@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES
+from .models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES, Post
 
 
 class SnippetSerializer(serializers.Serializer):
@@ -11,6 +11,10 @@ class SnippetSerializer(serializers.Serializer):
     language = serializers.ChoiceField(
         choices=LANGUAGE_CHOICES, default='python')
     style = serializers.ChoiceField(choices=STYLE_CHOICES, default='friendly')
+
+    # If it link to other table (Many-to-One).
+    # fk_Snippet_Post = serializers.PrimaryKeyRelatedField(
+    #    queryset=Post.objects.all(), many=True)
 
     def create(self, validated_data):
         """
@@ -53,3 +57,17 @@ class JoinColumnSerializer(serializers.Serializer):
 
     class Meta:
         fields = ('id', 'title', 'content')
+
+
+class PostSerializer(serializers.Serializer):
+
+    id = serializers.IntegerField(read_only=True)
+    title = serializers.CharField(
+        required=False, allow_blank=True, max_length=200)
+    content = serializers.CharField(required=False, allow_blank=True)
+    # field name FK with other table.
+    snipid = serializers.PrimaryKeyRelatedField(queryset=Snippet.objects.all())
+
+    class Meta:
+        model = Post
+        fields = ('id', 'title', 'content', 'snipid')

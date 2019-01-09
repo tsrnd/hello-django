@@ -1,8 +1,8 @@
-from .models import Snippet
-from .serializers import SnippetSerializer, CustomeSerializer, JoinColumnSerializer
+from .models import Snippet, Post
+from .serializers import SnippetSerializer, CustomeSerializer, JoinColumnSerializer, PostSerializer
 from django.http import Http404
 from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -84,3 +84,15 @@ class JoinListView(ListAPIView):
         # the serializer didn't take my RawQuerySet, so made it into a list
         serializer = JoinColumnSerializer(list(queryset), many=True)
         return Response(serializer.data)
+
+
+class ListPost(ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
+class FilterPostBySnippet(ListAPIView):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        return Post.objects.filter(snipid=1)
