@@ -3,8 +3,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: dockerfile
-    tty: true
+      dockerfile: Dockerfile.dev
     volumes:
       - .:/code
     expose:
@@ -29,7 +28,11 @@ services:
       POSTGRES_PASSWORD: 'django'
     restart: always
     volumes:
+<<<<<<< HEAD
       - ./db_initial.sql:/docker-entrypoint-initdb.d/db_initial.sql
+=======
+      - ./.tmp/data:/var/lib/postgresql/data
+>>>>>>> 512ce007044ff8409dc7d46dc1423d976216428f
 
   cache:
     image: redis:5.0.3-alpine

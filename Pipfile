@@ -12,7 +12,11 @@ pytest-django = "~=3.4.4"
 locustio = "~=0.9.0"
 yapf = "*"
 pylint-django = "*"
+<<<<<<< HEAD
 dependency-injector = "~=3.12.2"
+=======
+pytest-cov = "~=2.6.1"
+>>>>>>> 512ce007044ff8409dc7d46dc1423d976216428f
 
 [packages]
 django = "~=2.1.4"
