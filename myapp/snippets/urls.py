@@ -9,7 +9,7 @@ urlpatterns = [
     path('join', views.JoinListView.as_view(), name='join'),
     # Join table Post and Snippet by Serializer.
     path('post', views.ListPost.as_view(), name='posts'),
-    path('post/<int:pk>', views.FilterPostBySnippet.as_view(), name='findbysnip'),
+    path('post/<int:pk>', views.FilterPostBySnippet.as_view(), name='findbysnipid'),
     # View detail by rule /api/snippet/2
     path('<int:pk>', views.SnippetDetail.as_view(), name='detail'),
     # View all snippets.

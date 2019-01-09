@@ -1,17 +1,13 @@
-from .models import Snippet, Post
-from .serializers import SnippetSerializer, CustomeSerializer, JoinColumnSerializer, PostSerializer
-from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, mixins, generics
 
-from rest_framework import mixins
-from rest_framework import generics
-
+from django.http import Http404
 from django.db import connection
-
 import sys
+from .models import Snippet, Post
+from .serializers import SnippetSerializer, CustomeSerializer, JoinColumnSerializer, PostSerializer
 
 
 class SnippetList(mixins.ListModelMixin, mixins.CreateModelMixin,
@@ -94,5 +90,6 @@ class ListPost(ListAPIView):
 class FilterPostBySnippet(ListAPIView):
     serializer_class = PostSerializer
 
+    """ Set Filter by column. """
     def get_queryset(self):
-        return Post.objects.filter(snipid=1)
+        return Post.objects.filter(snipid=self.kwargs.get('pk', ''))
