@@ -4,10 +4,15 @@
 
 ## Development
 
-Make sure:
-- `pipenv` sticks the virtualenv in `./.venv` by setting the
- `PIPENV_VENV_IN_PROJECT` environment variable.
-- Tell Python don't generate `__pycache__` directory.
+### Setup
+
+- Install `pyenv` for Python version management
+- Install `pipenv` for project dependencies management
+
+Please follow [this guide](https://hackernoon.com/reaching-python-development-nirvana-bb5692adf30c) for installation instruction.
+
+- Install [Visual Code]() Editor
+- Update your bash profile
 
 ```bash
 # ~/.bashrc, ~/.bash_profile, ~/.zshrc
@@ -15,40 +20,46 @@ export PIPENV_VENV_IN_PROJECT=1
 export PYTHONDONTWRITEBYTECODE=1
 ```
 
-Install all dependencies (includes dev).
+- Install project dependencies (includes dev)
 
 ```bash
 $ make install
 ```
 
-Clone environment from example file, update it by yourself if needed.
+### Make Commands
 
-```
-$ cp .env.example .env
-```
+| Command | Description |
+|:-|:-|
+| `make build` | Build app image |
+| `make up` | Up all service in detach mode |
+| `make stop` | Stop all services |
+| `make test` | Test app |
+| `make migrations` | Creating new migrations based on the changes you have made to your models |
+| `make up-data` | Up data services |
+| `make clean` | Remove exited containers, dangling images, Python cache |
+| `make clean-data` | Remove existed data of data services |
 
-or run application within Docker environment.
+### Docker Commands
 
-```
-$ make up
-```
-
-View [the result](http://localhost:8000/api/foo/hello) on the browser.
+| Command | Description |
+|:-|:-|
+| `docker-compose run app <cmd>` | Run command `<cmd>` in app service |
+| `docker-compose logs -f <service>` | View & follow `<service>` logs |
 
 ### Debugging
 
-Start PostgreSQL database service with Docker.
+- Start PostgreSQL database service with Docker
 
 ```
 $ make up-data
 ```
 
-And start debugging from Visual Code menu.
+- Start debugging from Visual Code menu
 
-### Testing
+### Remote Debugging
 
-Run all test cases.
+> WIP
 
-```
-$ make test
-```
+## Deployment
+
+> WIP
