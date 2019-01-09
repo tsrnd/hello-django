@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 mkdir -p "$HOME/.docker/images"
 # shellcheck disable=SC2016
 docker images -a -f dangling=false --format '{{.Repository}}:{{.Tag}} {{.ID}}' \

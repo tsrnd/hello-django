@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: .
-    tty: true
+      dockerfile: Dockerfile.dev
     volumes:
       - .:/code
     expose:

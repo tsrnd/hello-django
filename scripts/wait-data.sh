@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 until psql "$DATABASE_URL" -c '\l'; do
   echo "Postgres is unavailable - sleeping";
   sleep 1;

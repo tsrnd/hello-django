@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 docker-compose run app sh ./scripts/pylint.sh
 pip install -U lintly
 # shellcheck disable=SC2086
