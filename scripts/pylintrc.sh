@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/sh
 pipenv run pylint \
   --disable=all \
   --enable=F,E,unreachable,duplicate-key,unnecessary-semicolon\
