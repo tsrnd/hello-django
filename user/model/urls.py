@@ -7,5 +7,5 @@ urlpatterns = [
     path('getname/<str:name>', views.getName, name='getName'),
     path('update/<int:id>/<str:newname>',views.update,name ='update'),
     path('delete/<int:id>',views.delete,name = "delete"),
-    path('json',views.getUserJson,name = "getUserJson")
+    path('',views.getUserJson,name = "getUserJson")
 ]
