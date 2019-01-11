@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.admin', 'django.contrib.auth',
     'django.contrib.contenttypes', 'django.contrib.sessions',
     'django.contrib.messages', 'django.contrib.staticfiles', 'myapp', 'polls',
-    'mypoll', 'rest_framework', 'rest_framework.authtoken'
+    'mypoll', 'rest_framework', 'rest_framework.authtoken', 'blog'
 ]
 
 MIDDLEWARE = [
@@ -129,6 +129,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_REDIRECT_URL = '/posts/'
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = '1025'
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -137,3 +142,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES':
     ('rest_framework.permissions.IsAuthenticated', )
 }
+
+# CELERY STUFF
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Africa/Nairobi'
