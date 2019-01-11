@@ -1,6 +1,6 @@
 FROM python:3.7-alpine
 
-ENV PYTHONBUFFERED=1 \
+ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     INSIDE_DOCKER=1
 
@@ -17,19 +17,20 @@ RUN set -ex \
         pcre-dev \
         postgresql-dev \
     && pip install -U -r requirements.txt --no-cache-dir \
-    && pip install -U -r requirements-dev.txt --no-cache-dir \
     && apk del .build-deps \
     && apk add -U --no-cache \
         postgresql-client \
         redis
 
-ADD docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
+ADD entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 
 RUN mkdir -p /code
 WORKDIR /code
 
-ENV DJANGO_MANAGEPY_MIGRATE=1 \
-    DJANGO_MANAGEPY_COLLECTSTATIC=0
+# these flags are used in `runserver` command only
+ENV AUTO_MIGRATE=1 \
+    AUTO_SEED=1 \
+    AUTO_COLLECT_STATIC=0
 
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
