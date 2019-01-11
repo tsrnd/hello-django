@@ -5,7 +5,7 @@
     {% for p in posts %}
     <div class="tabs-panel is-active">
       <p>
-        <b>{{ p.id }}. {{ p.title }}</b> by <i>{{ p.author }}</i>
+        <b>{{ p.id }}.</b><a href="{% url 'posts-detail' p.id %}">{{ p.title }} by <i>{{ p.author }}</i></a>
       </p>
     </div>
     {% endfor %}

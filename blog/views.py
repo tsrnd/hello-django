@@ -34,6 +34,7 @@ class BlogpostDetailView(TemplateView):
             raise Http404()
         else:
             context = {
+                'id': id,
                 'title': p.title,
                 'author': p.author,
                 'body': p.body,
