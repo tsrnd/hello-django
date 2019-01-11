@@ -13,7 +13,8 @@ before_install:
 install:
   - cp .env.example .env
 script:
-  - bash ./scripts/lint-review.sh
+  - docker-compose build app
+  - sh ./scripts/lint-review.sh
   - docker-compose run app pytest
 before_cache:
   - bash ./scripts/save-images.sh
