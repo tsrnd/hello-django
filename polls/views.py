@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 from .models import Question, Choice
 
@@ -11,7 +12,6 @@ from .models import Question, Choice
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
-
     def get_queryset(self):
         return Question.objects.filter(
             pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
@@ -32,8 +32,11 @@ class ResulsView(generic.DeleteView):
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    paginator = Paginator(latest_question_list, 1)
+    page = request.GET.get('page')
+    data = paginator.get_page(page)
     templates = loader.get_template('polls/index.html')
-    context = {'latest_question_list': latest_question_list}
+    context = {'data': data}
 
     #return render(request, 'polls/index.html', context)
     return HttpResponse(templates.render(context, request))
