@@ -1,19 +1,13 @@
 dist: xenial
 language: python
+env:
+  - WORKDIR=/home/travis/build/tsrnd/hello-django
+matrix:
+  fast_finish: true
 python:
   - '3.7.1'
-services:
-  - docker
-cache:
-  directories:
-    - $HOME/.docker/images/
-    - $HOME/.cache/pip/
-before_install:
-  - bash ./scripts/load-images.sh || true
 install:
-  - cp .env.example .env
+  - pip install -r requirements.txt
 script:
-  - bash ./scripts/lint-review.sh
-  - docker-compose run app pytest
-before_cache:
-  - bash ./scripts/save-images.sh
+  - find . -iname "*.py" | xargs pylint --load-plugins pylint_django
+  # - timeout 100s pipenv run pytest

@@ -138,16 +138,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-.dmypy.json
-dmypy.json
 
-# Pyre type checker
-.pyre/
+# vscode
+.vscode/
 
-### Python Patch ###
-.venv/
-
-# End of https://www.gitignore.io/api/macos,python
-
-data/
-reports/
+# migrations django
+team2/api/migrations/
