@@ -1,9 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from .models import Employees
 from django import template
 from django.template.loader import get_template
 import datetime
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+from firstapp.serializers import EmployeesSerializer
 
 # Create your views here.
 
@@ -56,4 +60,19 @@ def delete_employee(request,employee_id):
     employee = get_object_or_404(Employees, pk=employee_id)
     employee.delete()
     return redirect('index')
+
+
+@csrf_exempt
+def employees_list(request):
+    if request.method == 'GET':
+        employees = Employees.objects.all()
+        serializer = EmployeesSerializer(employees, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = EmployeesSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
 
