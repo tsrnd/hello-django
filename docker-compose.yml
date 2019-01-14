@@ -3,8 +3,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: dockerfile
-    tty: true
+      dockerfile: Dockerfile.dev
     volumes:
       - .:/code
     expose:
@@ -28,6 +27,8 @@ services:
       POSTGRES_USER: 'hello'
       POSTGRES_PASSWORD: 'django'
     restart: always
+    volumes:
+      - ./.tmp/data:/var/lib/postgresql/data
 
   cache:
     image: redis:5.0.3-alpine

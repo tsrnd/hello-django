@@ -1,0 +1,13 @@
+[
+    {
+        "type": "warning",
+        "module": "myapp.foo.views",
+        "obj": "",
+        "line": 6,
+        "column": 0,
+        "path": "myapp/foo/views.py",
+        "symbol": "unnecessary-semicolon",
+        "message": "Unnecessary semicolon",
+        "message-id": "W0301"
+    }
+]

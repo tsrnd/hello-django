@@ -1,13 +1,21 @@
 {
   "files.exclude": {
-    "**/__pycache__": true,
-    "**/.DS_Store": true,
+    // default excluding
     "**/.git": true,
-    "**/.github": true,
-    "**/.gitkeep": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    // python excluding
     "**/.pytest_cache": true,
+    "**/.python-version": true,
     "**/.venv": true,
-    "**/node_modules": true
+    "**/.coverage": true,
+    "**/.tmp": true,
+    "**/.vscode": true,
+    "**/.pylintrc": true,
+    "**/__pycache__": true,
+    "**/node_modules": true,
   },
   "[python]": {
     "editor.insertSpaces": true,
