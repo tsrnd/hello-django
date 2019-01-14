@@ -7,6 +7,7 @@ install:
 up:
 	@make build
 	@docker-compose up -d app
+	@docker-compose up -d vuejs
 	@docker-compose logs -f app
 
 lock:
