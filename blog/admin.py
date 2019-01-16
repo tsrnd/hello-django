@@ -15,4 +15,4 @@ class BlogpostAdmin(admin.ModelAdmin):
         queryset.update(published=False)
 
 
-admin.site.register(Blogpost, BlogpostAdmin)
+# admin.site.register(Blogpost, BlogpostAdmin)
