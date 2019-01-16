@@ -1,9 +1,14 @@
 -i https://pypi.org/simple
+amqp==2.4.0
+billiard==3.5.0.5
+celery==4.2.1
 dj-database-url==0.5.0
 django-redis==4.10.0
 django==2.1.5
 djangorestframework==3.9.0
+kombu==4.2.2.post1
 psycopg2-binary==2.7.6.1
 python-dotenv==0.10.1
-pytz==2018.7
+pytz==2018.9
 redis==3.0.1
+vine==1.2.0
