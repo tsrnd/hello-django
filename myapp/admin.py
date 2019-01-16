@@ -1,4 +1,6 @@
 from django.contrib import admin
-from myapp.foo import models
+from .poll.models import all as poll_models
 
-admin.register(models.Foo)
+for model in poll_models:
+    admin.register(model)
+    admin.site.register(model)
