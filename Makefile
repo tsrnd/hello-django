@@ -8,7 +8,7 @@ build:
 	@docker-compose build app
 
 up: build
-	@docker-compose up -d app
+	@docker-compose up -d --force-recreate app
 
 stop:
 	@docker-compose stop
