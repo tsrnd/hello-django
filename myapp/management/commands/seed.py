@@ -6,5 +6,5 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.stdout.write('Running all seeding scripts...')
-        from myapp.seeds import user
-        user.create_superuser()
+        from myapp.seeds import users
+        users.create_superuser()

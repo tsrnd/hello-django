@@ -9,7 +9,7 @@ done
 >&2 echo "Postgres is up - continuing"
 
 CMD="$*";
-if [ "$CMD" = "gunicorn*" ]; then
+if [ "$CMD" = "gunicorn*" ] || [ "$CMD" = "python manage\.py runserver*" ]; then
   if [ "$AUTO_MIGRATE" = '1' ]; then
     python manage.py migrate --noinput
   fi

@@ -36,4 +36,4 @@ ENV AUTO_MIGRATE=1 \
     AUTO_COLLECT_STATIC=0
 
 ENTRYPOINT [ "/entrypoint.sh" ]
-CMD [ "gunicorn", "myproject.wsgi" ]
+CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]

@@ -22,6 +22,9 @@ migrations: up-data
 
 # additional commands
 
+log:
+	@docker-compose logs -f app
+
 up-data:
 	@docker-compose up -d data cache
 	@bash ./scripts/wait-data.sh
