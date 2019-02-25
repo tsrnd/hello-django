@@ -1,4 +1,8 @@
 from django.contrib import admin
-from myapp.foo import models
+from .models.polls import *
 
-admin.register(models.Foo)
+admin.register(Question)
+admin.register(Choice)
+
+admin.site.register(Question)
+admin.site.register(Choice)

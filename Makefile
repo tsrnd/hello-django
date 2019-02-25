@@ -8,7 +8,7 @@ build:
 	@docker-compose build app
 
 up: build
-	@docker-compose up -d app
+	@docker-compose up -d --force-recreate app
 
 stop:
 	@docker-compose stop
@@ -22,9 +22,12 @@ migrations: up-data
 
 # additional commands
 
+log:
+	@docker-compose logs -f app
+
 up-data:
 	@docker-compose up -d data cache
-	@bash ./scripts/wait-data.sh
+	@sh ./scripts/wait-data.sh
 
 clean:
 	@docker ps -aq -f status=exited | xargs docker rm
@@ -38,3 +41,6 @@ clean-all: clean clean-data
 
 lint: build
 	@docker-compose run app pylint myproject myapp
+
+init:
+	@sh ./scripts/__init__.sh
