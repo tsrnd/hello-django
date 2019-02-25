@@ -27,7 +27,7 @@ log:
 
 up-data:
 	@docker-compose up -d data cache
-	@bash ./scripts/wait-data.sh
+	@sh ./scripts/wait-data.sh
 
 clean:
 	@docker ps -aq -f status=exited | xargs docker rm
@@ -41,3 +41,6 @@ clean-all: clean clean-data
 
 lint: build
 	@docker-compose run app pylint myproject myapp
+
+init:
+	@sh ./scripts/__init__.sh

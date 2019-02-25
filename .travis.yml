@@ -9,7 +9,7 @@ cache:
     - $HOME/.docker/images/
     - $HOME/.cache/pip/
 before_install:
-  - bash ./scripts/load-images.sh || true
+  - sh ./scripts/load-images.sh || true
 install:
   - cp .env.example .env
 script:
@@ -17,4 +17,4 @@ script:
   - sh ./scripts/lint-review.sh
   - docker-compose run app pytest
 before_cache:
-  - bash ./scripts/save-images.sh
+  - sh ./scripts/save-images.sh

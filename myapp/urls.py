@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import polls
+from .views import index, polls
 
 polls_urls = [
     # ex: /polls/
@@ -13,5 +13,6 @@ polls_urls = [
 ]
 
 urlpatterns = [
+    path('', index),
     path('polls/', include((polls_urls, 'polls'), namespace="polls"))
 ]
